@@ -8,6 +8,7 @@ function draw() {
   fill(255, 255, 255);
   circle(320, 180, 100);
   circle(320, 300, 155);
+  arc(320, 100, 40, 40, PI, TWO_PI);
   strokeWeight(0);
   fill(255, 0, 0);
   circle(320, 270, 20);
@@ -33,6 +34,8 @@ function draw() {
   fill(255, 0, 0);
   strokeWeight(0);
   text('Happy New Year!', 170, 430);
+  trigangle(320, 100, 300, 140, 340, 140);
+
 
 
 
