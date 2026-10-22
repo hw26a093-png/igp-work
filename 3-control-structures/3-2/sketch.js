@@ -3,7 +3,8 @@ let enemyY = 100;
 
 const PLAYER_SIZE = 40;
 const ENEMY_SIZE = 60;
-const ENEMY_SPEED = 2;
+const ENEMY_SPEEDx = 2;
+const ENEMY_SPEEDy = 2;
 const HIT_DISTANCE = (PLAYER_SIZE + ENEMY_SIZE) / 2;  // 両者の半径の合計が接触距離
 
 function setup() {
@@ -16,14 +17,31 @@ function draw() {
   const playerX = mouseX;
   const playerY = mouseY;
 
-  enemyX += ENEMY_SPEED;
-  enemyY += ENEMY_SPEED;
+
+  if (enemyX - playerX <= 0) {
+    enemyX += (ENEMY_SPEEDx) * (2);
+  }
+  else {
+    enemyX += (ENEMY_SPEEDx * (2)) * -1;
+
+  }
+  if (enemyY - playerY <= 0) {
+    enemyY += (ENEMY_SPEEDy) * (2);
+  }
+  else {
+    enemyY += (ENEMY_SPEEDy * (2)) * -1;
+
+  }
 
   // 2 点間の距離は、三平方の定理により求められる
   const distance = Math.sqrt(Math.pow(playerX - enemyX, 2) + Math.pow(playerY - enemyY, 2));
 
   // 敵の描画
-  fill(255, 200, 200);
+  if (distance < HIT_DISTANCE) {
+    fill(255, 0, 0);
+  } else {
+    fill(255, 200, 200);
+  }
   circle(enemyX, enemyY, ENEMY_SIZE);
 
   // プレイヤーの描画
