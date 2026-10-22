@@ -18,7 +18,10 @@ function draw() {
   const y = CARD_START_Y;
 
   fill(200, 200, 200);
-  rect(x, y, CARD_W, CARD_H);
-  rect(x + (CARD_W + CARD_INTERVAL), y, CARD_W, CARD_H);
-  rect(x, y + (CARD_H + CARD_INTERVAL), CARD_W, CARD_H);
+  for (let i = 0; i < CARD_COUNT_H; i++) {
+    for (let j = 0; j < CARD_COUNT_V; j++) {
+      rect(x + (CARD_W + CARD_INTERVAL) * i, y + (CARD_H + CARD_INTERVAL) * j, CARD_W, CARD_H);
+    }
+  }
+
 }
