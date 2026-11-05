@@ -6,6 +6,7 @@ const CARD_START_Y = 10;
 const CARD_COUNT_H = 10;  // 横方向のカード枚数
 const CARD_COUNT_V = 6; // 縦方向のカード枚数
 
+
 function setup() {
   const canvas = createCanvas(640, 480);
 }
@@ -13,6 +14,9 @@ function setup() {
 function draw() {
   background(40, 40, 40);
   noStroke();
+
+  const playerX = mouseX;
+  const playerY = mouseY;
 
   const x = CARD_START_X;
   const y = CARD_START_Y;
