@@ -2,6 +2,7 @@ let tileImage;
 let coinImage;
 
 const coinXs = [294, 342, 534]; // コインの X 座標（最後の s は複数形を表す）
+const tileXs = [0, 48, 96, 0, 0, 240, 288, 336, 384, 432, 0, 528, 576, 624]; // 地面タイルの X 座標
 
 // preload() は画像などを事前に読み込むための関数
 // 読み込みが完了してから setup() が実行される
@@ -30,9 +31,9 @@ function draw() {
   // TODO: 地面タイルの描画を、配列と for 文を使って実装する
 
   // 地面タイルの描画
-  drawTile(0, 432);
-  drawTile(240, 432);
-  drawTile(528, 432);
+  for (let i = 0; i < tileXs.length; i++) {
+    drawTile(tileXs[i], 432);
+  }
 }
 
 // コインの描画

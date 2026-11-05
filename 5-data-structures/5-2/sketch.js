@@ -1,11 +1,15 @@
 let enemyImages = [];
 
 // TODO: 下記 3 つの変数を削除し、代わりに enemy オブジェクトを使う
-let enemyX = 320;
-let enemyY = 240;
-let enemySpeed = 5;
 
-let enemy = {};
+
+
+let enemy = {
+  x: 320,
+  y: 240,
+  speed: 5,
+  flip: false
+};
 
 // preload() は画像などを事前に読み込むための関数
 // 読み込みが完了してから setup() が実行される
@@ -27,14 +31,16 @@ function draw() {
   background(235, 235, 200);
 
   if (keyIsDown(LEFT_ARROW)) {
-    enemyX -= enemySpeed;
+    enemy.x -= enemy.speed;
+    enemy.flip = true;
   }
   if (keyIsDown(RIGHT_ARROW)) {
-    enemyX += enemySpeed;
+    enemy.x += enemy.speed;
+    enemy.flip = false;
   }
 
   // TODO: 移動方向によって敵の向きを変える
-  drawEnemy(enemyX, enemyY, false);
+  drawEnemy(enemy.x, enemy.y, enemy.flip);
 
   textSize(20);
   text('X = ' + enemy.x, 10, 40);

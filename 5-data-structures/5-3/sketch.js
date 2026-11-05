@@ -18,7 +18,11 @@ let player = {
 // 敵群情報
 let enemies = [
   { type: 0, size: 48, speed: 2, x: 100, y: 240 },
-  { type: 1, size: 24, speed: -0.5, x: 200, y: 240 },
+  { type: 0, size: 48, speed: 2, x: 300, y: 240 },
+  { type: 1, size: 24, speed: -2, x: 200, y: 240 },
+  { type: 1, size: 90, speed: -1, x: 400, y: 240 },
+  { type: 1, size: 48, speed: -0.5, x: 500, y: 240 },
+  { type: 1, size: 60, speed: -0.9, x: 250, y: 240 },
 ];
 
 // preload() は画像などを事前に読み込むための関数
@@ -62,13 +66,25 @@ function draw() {
 function updatePlayer() {
   if (player.x < mouseX) {
     player.x = Math.min(player.x + player.speed, mouseX);
+    player.flip = false;
   } else if (player.x > mouseX) {
     player.x = Math.max(player.x - player.speed, mouseX);
+    player.flip = true;
   }
   if (player.y < mouseY) {
     player.y = Math.min(player.y + player.speed, mouseY);
   } else if (player.y > mouseY) {
     player.y = Math.max(player.y - player.speed, mouseY);
+  }
+  for (let i = 0; i < enemies.length; i++) {
+    if (isHitPlayer(enemies[i]) === true) {
+      player.damage = true;
+      return;
+    }
+    else if (isHitPlayer(enemies[i]) === false) {
+      player.damage = false;
+    }
+
   }
 }
 

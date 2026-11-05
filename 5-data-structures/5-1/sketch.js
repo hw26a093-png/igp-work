@@ -35,14 +35,27 @@ function draw() {
   const playerX = mouseX;
   const playerY = mouseY;
 
+
   // コインの描画
   for (let y = 0; y < coinFlags.length; y++) {
     for (let x = 0; x < coinFlags[y].length; x++) {
       const coinX = 150 + (80 * x);
       const coinY = 50 + (80 * y);
 
+
       if (coinFlags[y][x]) {
         drawCoin(coinX, coinY);
+      }
+
+    }
+
+  } for (let y = 0; y < coinFlags.length; y++) {
+    for (let x = 0; x < coinFlags[y].length; x++) {
+      const coinX = 150 + (80 * x);
+      const coinY = 50 + (80 * y);
+      if (isHitCoin(playerX, playerY, coinX, coinY) === true && coinFlags[y][x] === true) {
+        coinFlags[y][x] = false;
+        coinCount++;
       }
     }
   }
@@ -53,7 +66,10 @@ function draw() {
   // コイン取得数
   textSize(20);
   text('コイン枚数 = ' + coinCount, 10, 440);
+
+
 }
+
 
 // コインの描画
 function drawCoin(x, y) {
