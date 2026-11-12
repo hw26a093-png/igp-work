@@ -9,9 +9,13 @@ const JUDGE_LINE_Y = 400;
 const NOTE_START_Y = -20;
 const NOTE_SPEED = 4;
 const GOOD_DISTANCE = 70;
+const GREAT_DISTANCE = 40;
+const PERFECT_DISTANCE = 20;
 
 const JUDGEMENT_GRADE_GOOD = 'Good';
 const JUDGEMENT_GRADE_MISS = 'Miss';
+const JUDGEMENT_GRADE_PERFECT = 'Perfect';
+const JUDGEMENT_GRADE_GREAT = 'Great';
 
 // 譜面データ (レーン番号、Perfect の位置に到達するフレーム)
 let notes = [
@@ -144,7 +148,14 @@ function keyPressed() {
 function setJudgement(distance) {
   if (distance <= GOOD_DISTANCE) {
     judgementGrade = JUDGEMENT_GRADE_GOOD;
-  } else {
+  }
+  else if (distance <= GREAT_DISTANCE) {
+    judgementGrade = JUDGEMENT_GRADE_GREAT;
+  }
+  else if (distance <= PERFECT_DISTANCE) {
+    judgementGrade = JUDGEMENT_GRADE_PERFECT;
+  }
+  else {
     judgementGrade = JUDGEMENT_GRADE_MISS;
   }
 

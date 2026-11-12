@@ -49,6 +49,7 @@ function updateTarget(target) {
 
   if (target.ageFrames >= target.deathFrames) {
     resetTarget(target);
+    missCount++;
   }
 }
 
@@ -69,6 +70,11 @@ function resetTarget(target) {
 function mousePressed() {
   for (let i = 0; i < targets.length; i++) {
     // TODO (A): ターゲットとの当たり判定を行い、当たっている場合に必要な処理を書く
+    if (isHitTarget(targets[i])) {
+      successCount++;
+      resetTarget(targets[i]);
+      break;
+    }
   }
 }
 

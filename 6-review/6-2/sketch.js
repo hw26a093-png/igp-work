@@ -1,5 +1,6 @@
 // TODO:
 //   (1) 左右のキー入力でプレイヤーを動かす。移動速度は player.speed とする。
+
 //   (2) 移動方向に応じてプレイヤーの向きを変更する。
 //   (3) コインが最大 5 枚登場するようにする（現在は最大 2 枚）。
 //   (4) プレイヤーとコインが当たったら、得点を 1 増やしてコインのパラメータをリセットする。
@@ -18,7 +19,7 @@ let player = {
 };
 
 // コイン情報
-let coins = [{}, {}];
+let coins = [{}, {}, {}, {}, {}];
 
 // preload() は画像などを事前に読み込むための関数 (p5.js から自動的に呼び出される)
 // 読み込みが完了してから setup() が実行される
@@ -56,11 +57,25 @@ function draw() {
   drawGameScore();
 }
 
+
+
 // プレイヤーの更新
 function updatePlayer() {
   if (keyIsDown(LEFT_ARROW)) {
+    player.x -= player.speed;
+    player.flip = true;
   }
   if (keyIsDown(RIGHT_ARROW)) {
+    player.x += player.speed;
+    player.flip = false;
+  }
+
+  for (let i = 0; i < coins.length; i++) {
+    if (isHitPlayer(coins[i])) {
+      gameScore++;
+      resetCoin(coins[i]);
+      break;
+    }
   }
 
   // 画面外への移動を制限 ("width" は p5.js の変数で画面横幅を表す)
@@ -80,6 +95,9 @@ function updateCoin(coin) {
     resetCoin(coin);
   }
 }
+
+
+
 
 // コインのリセット
 // (画面より上のランダムな位置に配置。大きさ・落下速度もランダム)
