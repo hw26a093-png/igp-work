@@ -21,7 +21,7 @@ function loadImages() {
   images.resultBg = loadImage('assets/images/result_bg.png');
   images.resultText = loadImage('assets/images/result_text.png');
   images.player = loadImage('assets/images/player.png');
-  images.enemy1 = loadImage('assets/enemy_walk1.png');
-  images.enemy2 = loadImage('assets/enemy_chase1.png');
- 
+  images.enemy1 = loadImage('assets/images/enemy_walk1.png');
+  images.enemy2 = loadImage('assets/images/enemy_chase1.png');
+
 }
